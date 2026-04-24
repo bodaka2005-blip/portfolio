@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DESIGN EXPRESS | Link in Bio</title>
+  <!-- Google Fonts: Poppins مع دعم العربية (استخدام Fallback) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (مجاني للأيقونات) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 20%, #0a0c10, #030507);
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      /* فتحة أنيميشن fade in للصفحة */
+      animation: pageFadeIn 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    /* أنيميشن fade-in للبدن */
+    @keyframes pageFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* الحاوية الرئيسية (Card style) */
+    .bio-container {
+      max-width: 620px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(18, 22, 28, 0.75);
+      backdrop-filter: blur(2px);
+      border-radius: 48px;
+      padding: 2rem 1.8rem 2rem 1.8rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.2s;
+    }
+
+    /* تنسيق اللوجو الدائري */
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .circle-logo {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #2c2f36, #1e2128);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+      transition: transform 0.25s ease;
+      overflow: hidden; /* عشان الصورة تبقى جوه الدائرة ومتخرجش برا */
+    }
+    .circle-logo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .circle-logo i {
+      font-size: 3.2rem;
+      color: #f0f3fa;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      letter-spacing: -1px;
+    }
+    .circle-logo:hover {
+      transform: scale(1.02);
+    }
+
+    /* اسم البراند */
+    .brand-name {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #FFFFFF, #b9c8ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.2);
+    }
+
+    /* الوصف القصير */
+    .description {
+      text-align: center;
+      color: #cbd5e6;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      font-weight: 400;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.8rem 1rem;
+      border-radius: 32px;
+      margin-bottom: 1.8rem;
+      backdrop-filter: blur(2px);
+      border: 0.5px solid rgba(255,255,255,0.05);
+    }
+
+    /* قائمة الأزرار (Buttons container) */
+    .links-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    /* زر احترافي كبير */
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      background: #262b33;
+      padding: 1rem 1.5rem;
+      border-radius: 60px;
+      text-decoration: none;
+      color: #f1f5f9;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.3px;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      backdrop-filter: blur(2px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* أيقونات داخل الأزرار */
+    .social-btn i {
+      font-size: 1.7rem;
+      width: 32px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .social-btn span {
+      flex: 1;
+      text-align: right;
+    }
+
+    /* Hover Animation ناعم */
+    .social-btn:hover {
+      background: #323a45;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 24px -10px rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .social-btn:hover i {
+      transform: scale(1.08);
+    }
+
+    /* تأثير click (click effect) - JavaScript سيضيف كلاس مؤقت */
+    .social-btn:active {
+      transform: scale(0.97);
+      transition: transform 0.08s linear;
+      background: #1f242c;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* كلاس ديناميكي لتأثير النقر الإضافي عبر JS (نبضة لطيفة) */
+    .btn-click-effect {
+      animation: btnPop 0.2s ease-out;
+    }
+
+    @keyframes btnPop {
+      0% { transform: scale(0.96); opacity: 0.9; }
+      80% { transform: scale(1.01); }
+      100% { transform: scale(1); }
+    }
+
+    /* فاصل divider بين سوشيال ميديا وباقي الأزرار */
+    .divider {
+      margin: 1.5rem 0 0.8rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), rgba(255,255,255,0.4), rgba(255,255,255,0.2), transparent);
+    }
+    .divider-icon {
+      color: #7c8ba0;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    /* مجموعة الأزرار الأساسية بعد الفاصل */
+    .contact-section {
+      margin-top: 0.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Footer صغير */
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: #6a7c9e;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* Responsive - تحسينات للموبايل */
+    @media (max-width: 500px) {
+      .bio-container {
+        padding: 1.5rem 1.2rem;
+      }
+      .brand-name {
+        font-size: 1.7rem;
+      }
+      .social-btn {
+        padding: 0.85rem 1.2rem;
+        font-size: 1rem;
+      }
+      .social-btn i {
+        font-size: 1.5rem;
+        width: 28px;
+      }
+      .description {
+        font-size: 0.85rem;
+      }
+      .circle-logo {
+        width: 85px;
+        height: 85px;
+      }
+      .circle-logo i {
+        font-size: 2.7rem;
+      }
+    }
+
+    /* تحسين للشاشات الصغيرة جداً */
+    @media (max-width: 420px) {
+      .social-btn span {
+        font-size: 0.9rem;
+      }
+      .bio-container {
+        border-radius: 36px;
+      }
+    }
+
+    /* إضافة smooth focus */
+    .social-btn:focus-visible {
+      outline: 2px solid #80b4ff;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bio-container">
+  <!-- لوجو دائري - تم التعديل لاستخدام صورة Logo.png -->
+  <div class="logo-wrapper">
+    <div class="circle-logo">
+      <img src="Logo.png" alt="شعار DESIGN EXPRESS" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+    </div>
+  </div>
+
+  <!-- اسم البراند -->
+  <h1 class="brand-name">DESIGN EXPRESS</h1>
+
+  <!-- وصف قصير احترافي -->
+  <div class="description">
+    شركة تصميم جرافيك متخصصة في تقديم حلول إبداعية تساعد العلامات التجارية على التميز والظهور بشكل احترافي. نقدم خدمات تصميم السوشيال ميديا، الهويات البصرية، والإعلانات بأسلوب عصري يجذب الانتباه ويحقق نتائج قوية.
+  </div>
+
+  <!-- كل الأزرار (قائمة) -->
+  <div class="links-grid">
+    <!-- أزرار السوشيال ميديا -->
+    <a href="#" class="social-btn" data-url=https://www.instagram.com/designexpress.9802145?igsh=MWdtb2ZvNWp6d2xuNw== target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-instagram"></i>
+      <span>Instagram</span>
+      <i class="fas fa-chevron-left" style="font-size: 0.8rem; opacity: 0.7; width: auto;"></i>
+    </a>
+
+    <a href="#" class="social-btn" data-url=https://www.facebook.com/share/18mv3t3bd2/ target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-facebook-f"></i>
+      <span>Facebook</span>
+      <i class="fas fa-chevron-left" style="font-size: 0.8rem; opacity: 0.7; width: auto;"></i>
+    </a>
+
+    <a href="#" class="social-btn" data-url=https://www.tiktok.com/@designexpress200?is_from_webapp=1&sender_device=pc target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-tiktok"></i>
+      <span>TikTok</span>
+      <i class="fas fa-chevron-left" style="font-size: 0.8rem; opacity: 0.7; width: auto;"></i>
+    </a>
+
+    <!-- فاصل divider -->
+    <div class="divider">
+      <span class="divider-line"></span>
+      <span class="divider-icon"><i class="fas fa-asterisk"></i> تواصل معنا <i class="fas fa-asterisk"></i></span>
+      <span class="divider-line"></span>
+    </div>
+
+    <!-- باقي الأزرار (Phone Numbers, Contact Me) -->
+    <a href="#" class="social-btn" data-url="tel:+201159816461" rel="noopener">
+      <i class="fas fa-phone-alt"></i>
+      <span>Phone Numbers</span>
+      <i class="fas fa-chevron-left" style="font-size: 0.8rem; opacity: 0.7; width: auto;"></i>
+    </a>
+
+    <a href="#" class="social-btn" data-url="https://wa.me/201159816461?text=مرحباً%20أريد%20استشارة%20تصميم" target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-whatsapp"></i>
+  <span>Whatsapp</span>
+  <i class="fas fa-chevron-left" style="font-size: 0.8rem; opacity: 0.7; width: auto;"></i>
+</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Powered by DESIGN EXPRESS
+  </div>
+</div>
+
+<script>
+  (function() {
+    // إعداد روابط placeholder ولكن يمكن تعديلها بسهولة.
+    // جميع الأزرار تحتوي على data-url مسبقاً (موجود في الـ HTML أعلاه)
+    // سوف نقوم بجلب كل الأزرار وإضافة السلوك:
+    // 1. فتح الرابط عند النقر مع تجنب الافتراضي إذا لم يكن الرابط محدد
+    // 2. تأثير hover مدعوم أصلاً من CSS، ونضيف click effect ناعم (أنيميشن إضافي)
+    // 3. نضمن عدم تكسر الوظائف إذا لم يكن الرابط جاهزاً
+    
+    const buttons = document.querySelectorAll('.social-btn');
+    
+    // معالجة النقر لكل زر
+    buttons.forEach(btn => {
+      // إضافة تأثير click إضافي smooth عبر كلاس مؤقت
+      btn.addEventListener('click', function(e) {
+        // الحصول على الرابط من سمة data-url (التي تم تعيينها مسبقاً في كل زر)
+        let url = this.getAttribute('data-url');
+        
+        // إذا لم يكن هناك رابط، نمنع السلوك الافتراضي و نخرج
+        if (!url || url === '#') {
+          e.preventDefault();
+          // نعطي تنبيه خفيف للمستخدم تجنباً للخلل (اختياري)
+          // لكن يمكن تجاهله، لكننا سنمنع فقط.
+          console.log('الرابط غير محدد بشكل صحيح');
+          // نضيف التأثير حتى وإن كان الرابط غير صالح
+          addClickTemporaryEffect(this);
+          return;
+        }
+        
+        // نمنع السلوك الافتراضي فقط لنتحكم في الفتح مع تأثير smooth (يمكن تمريره)
+        // لكن نريد فتح الرابط بالشكل الصحيح (لينك أو هاتف أو واتساب)
+        // نتعامل مع الروابط الخاصة: tel: , mailto: , https
+        // نستخدم window.open للروابط العادية، ولكن لـ tel: الأفضل عدم فتح نافذة جديدة
+        e.preventDefault();
+        
+        // إضافة تأثير ناعم إضافي
+        addClickTemporaryEffect(this);
+        
+        // فتح الرابط حسب نوعه
+        if (url.startsWith('tel:')) {
+          // فتح تطبيق الهاتف
+          window.location.href = url;
+        } 
+        else if (url.startsWith('mailto:')) {
+          window.location.href = url;
+        }
+        else {
+          // روابط ويب عادية - فتح في تبويب جديد (للحفاظ على تجربة سلسة)
+          window.open(url, '_blank', 'noopener,noreferrer');
+        }
+      });
+    });
+    
+    // وظيفة مساعدة لإضافة تأثير click لطيف (نبضة إضافية)
+    function addClickTemporaryEffect(element) {
+      // إضافة كلاس التأثير
+      element.classList.add('btn-click-effect');
+      // إزالة الكلاس بعد 200 مللي ثانية
+      setTimeout(() => {
+        element.classList.remove('btn-click-effect');
+      }, 200);
+    }
+    
+    // اختياري: إضافة تأثيرات hover إضافية عبر JS لتكامل مع CSS (لكن CSS تغطي الأساس)
+    // يمكننا إضافة تأثير طفيف للزر عند الدخول بالماوس (منع تضارب)
+    // ونقوم بإضافة حماية لأزرار أن يكون فيها مؤشر تفاعلي
+    
+    // ضمان أن جميع الأزرار لديها data-url محدثة بشكل placeholder احترافي
+    // التأكد من أن الروابط المبدئية حقيقية ووظيفية ولكن يمكن المستخدم تعديلها لاحقاً
+    // بالفعل كل الأزرار تحتوي على data-url صحيح:
+    // Instagram, Facebook, TikTok روابط نموذجية لـ designxpress
+    // Phone Numbers -> tel: (رقم تجريبي +966512345678)
+    // Contact Me -> رابط واتساب تجريبي مع رسالة افتراضية
+    // يمكن تخصيصها بسهولة
+    
+    // إضافة ميزة إضافية: إذا كان المستخدم يريد أي تحسينات إضافية، نقوم بطباعة معلومات في console
+    console.log('✅ صفحة Link in Bio جاهزة | DESIGN EXPRESS | تأثيرات hover و click ناعمة');
+    
+    // تحسين صغير للأزرار عند تحميل الصفحة: نضمن لكل زر أن مؤشر اليد يظهر بشكل صحيح
+    // جميعها لها cursor: pointer موجودة من خلال style العام
+    
+    // نضيف أنيميشن fade in إضافي صغير لكل زر عند التحميل (تأثير متدرج)
+    // نجعل الأزرار تظهر بشكل متتالي ناعم (اختياري)
+    const allBtns = document.querySelectorAll('.social-btn');
+    allBtns.forEach((btn, idx) => {
+      btn.style.opacity = '0';
+      btn.style.transform = 'translateY(8px)';
+      btn.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      setTimeout(() => {
+        btn.style.opacity = '1';
+        btn.style.transform = 'translateY(0)';
+      }, 80 + idx * 60);
+    });
+    
+    // منع التداخل مع hover و transition الموجودة في الـ CSS
+    // نضمن أن transition لا تتعارض مع خاصية transform الرئيسية
+    // ويمكن أن تكون الظلال طبيعية.
+    // إضافة إعادة تعيين للزر عند انتهاء التأثير
+    
+    // كذلك جعل الروابط تعمل حتى وإن تم إضافة المزيد من الأزرار ديناميكياً
+    // لكن الكود ثابت لجميع الأزرار الموجودة.
+    
+    // إضافة حماية للفاصل divider لا يحتاج أي تفاعل.
+    // كل شيء جاهز للعرض.
+    
+    // ميزة اختيارية: تغيير لون الأيقونات حسب المنصة (تأثير خفيف) من أجل لمسة جمالية
+    // ليست أساسية لكنها تجعل التصميم أنيق
+    function applyPlatformIconStyles() {
+      const instaBtn = document.querySelector('.social-btn .fa-instagram')?.parentElement;
+      const fbBtn = document.querySelector('.social-btn .fa-facebook-f')?.parentElement;
+      const tiktokBtn = document.querySelector('.social-btn .fa-tiktok')?.parentElement;
+      if(instaBtn) instaBtn.style.setProperty('--hover-accent', '#d62976');
+      if(fbBtn) fbBtn.style.setProperty('--hover-accent', '#1877f2');
+      if(tiktokBtn) tiktokBtn.style.setProperty('--hover-accent', '#25f4ee');
+    }
+    applyPlatformIconStyles();
+    // يمكن إضافة تأثير hover مختلف للأيقونات ولكن CSS يغطي بشكل رائع.
+    
+    // تعديل بسيط لضمان توافق "Contact Me" - التأكد من واتساب يعمل بشكل جيد مع الرابط المباشر
+    // لدينا بالفعل رابط واتساب تجريبي:
+    // data-url="https://wa.me/966512345678?text=مرحباً%20أريد%20استشارة%20تصميم"
+    // ممتاز
+    // نضمن أن رقم الهاتف مبدئي افتراضي.
+  })();
+</script>
+
+<!-- 
+    ملاحظة: تم تعديل اللوجو لاستخدام صورة Logo.png
+    يجب وضع ملف الصورة Logo.png في نفس مجلد ملف index.html
+    
+    التصميم متوافق مع معايير الوصولية، يتمتع بظلال ناعمة، حواف دائرية، 
+    أنيميشن fade-in للصفحة، وتأثير hover ناعم وتحريك للزر عند النقر.
+    جميع الروابط قابلة للتعديل بسهولة من خلال تعديل سمة data-url في كل عنصر.
+    Footer مخصص، فاصل divider بين السوشيال ميديا وباقي الأزرار،
+    Google Fonts Poppins مستخدم، responsive بالكامل مع Flexbox.
+    كما تم إضافة أنيميشن دخول لكل الأزرار تباعاً بشكل ناعم.
+-->
+</body>
+</html>
